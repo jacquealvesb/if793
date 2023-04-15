@@ -5,27 +5,27 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField] GameObject[] prefabs;
-    [SerializeField] float spawnTime = 0.5f;
-    [SerializeField] float minX;
-    [SerializeField] float maxX;
+    [SerializeField] Vector2 spawnTimeRange;
+    [SerializeField] Vector2 xRange;
 
+    private float spawnTime;
     private float xPosition;
     private Vector3 position;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Spawn());
+        spawnTime = Random.Range(spawnTimeRange.x, spawnTimeRange.y);
+        Invoke("Spawn", spawnTime);
     }
 
-    IEnumerator Spawn(){
-        while(true){
-            xPosition = Random.Range(minX, maxX);
-            position = new Vector3(xPosition, transform.position.y);
+    private void Spawn(){
+        xPosition = Random.Range(xRange.x, xRange.y);
+        position = new Vector3(xPosition, transform.position.y);
 
-            Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity);
-            yield return new WaitForSeconds(spawnTime);
-        }
+        Instantiate(prefabs[Random.Range(0, prefabs.Length)], position, Quaternion.identity);
+        spawnTime = Random.Range(spawnTimeRange.x, spawnTimeRange.y);
+        Invoke("Spawn", spawnTime);
     }
 
     // Update is called once per frame

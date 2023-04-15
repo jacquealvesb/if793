@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    public GameController gameController;
+    public GameObject shield;
+
     public int life = 3;
     public bool secured = false;
-    public GameObject shield;
 
     private Animator animator;
 
@@ -16,8 +18,11 @@ public class PlayerBehaviour : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.CompareTag("shield"))
-        {
+        if(collider.gameObject.CompareTag("collectable")) {
+            gameController.AddScore(1);
+            Destroy(collider.gameObject);
+
+        } else if(collider.gameObject.CompareTag("shield")) {
             if(!secured) {
                 secured = true;
                 animator.SetTrigger("protect");
@@ -34,6 +39,7 @@ public class PlayerBehaviour : MonoBehaviour
                 life--;
                 if(life <= 0) {
                     print("DEAD");
+                    gameController.Restart();
                 }
             } else {
                 secured = false;

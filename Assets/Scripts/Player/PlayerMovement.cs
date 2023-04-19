@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 10.0f;
+    public float speed = 5.0f;
 
     private int touching = 0;
     private float dirX;
 
     void Update()
     {
-        dirX = Input.GetAxis("Horizontal") * speed;
+        if(SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            dirX = Input.GetAxis("Horizontal") * speed;
+        }
+        else
+        {
+            dirX = Input.acceleration.x * speed;
+        }
     }
 
     private void FixedUpdate()
@@ -24,6 +31,9 @@ public class PlayerBehaviour : MonoBehaviour
         if(collision.gameObject.CompareTag("rock"))
         {
             touching = 1;
+
+        } else if(collision.gameObject.CompareTag("floor")) {
+            GetComponent<PlayerBehaviour>().gameController.Restart();
         }
     }
 

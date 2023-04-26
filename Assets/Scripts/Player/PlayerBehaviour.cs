@@ -6,8 +6,6 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public GameController gameController;
     public GameObject shield;
-
-    public int life = 3;
     public bool secured = false;
 
     private Animator animator;
@@ -35,12 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
             if(!secured) {
                 print("OUCH!");
                 animator.SetTrigger("damage");
-
-                life--;
-                if(life <= 0) {
-                    print("DEAD");
-                    gameController.Restart();
-                }
+                gameController.Damage();
             } else {
                 secured = false;
                 shield.SetActive(false);

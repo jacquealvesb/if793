@@ -4,44 +4,37 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = 10.0f;
+    private Rigidbody2D rb;
+    private float dirX, dirY;
 
-    private int touching = 0;
-    private float dirX;
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
         if(SystemInfo.deviceType == DeviceType.Desktop)
         {
             dirX = Input.GetAxis("Horizontal") * speed;
+            dirY = Input.GetAxis("Vertical") * speed;
         }
         else
         {
             dirX = Input.acceleration.x * speed;
+            dirY = Input.acceleration.y * speed;
         }
+        
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -2f, 2f), Mathf.Clamp(transform.position.y, -4f, 4f));
     }
 
     private void FixedUpdate()
     {
-        transform.Rotate(0f, 0f, dirX * touching);
-    }
+        rb.velocity = new Vector2(dirX, dirY * 1.2f);
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("rock"))
-        {
-            touching = 1;
-
-        } else if(collision.gameObject.CompareTag("floor")) {
-            GetComponent<PlayerBehaviour>().gameController.Restart();
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("rock"))
-        {
-            touching = 0;
-        }
+        float y = transform.position.y;
+        float scale = 0.4f - 0.04f * y;
+        transform.localScale = new Vector3(scale, scale, 0f);
     }
 }

@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI lifeText;
+
     private int score = 0;
     private int life = 3;
 
@@ -17,13 +21,13 @@ public class GameController : MonoBehaviour
     
     public void AddScore(int points) {
         score += points;
-        print(score + " POINTS!");
+        scoreText.text = "pontos: " + score;
     }
 
     public void Damage() {
         life--;
+        lifeText.text = "vidas: " + life;
         if(life <= 0) {
-            print("DEAD");
             Restart();
         } else {
             cameraShake.Shake(0.1f);

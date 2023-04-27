@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10.0f;
     private Rigidbody2D rb;
     private float dirX, dirY;
+    private float initialScale;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        initialScale = transform.localScale.x;
     }
 
     void Update()
@@ -34,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(dirX, dirY * 1.2f);
 
         float y = transform.position.y;
-        float scale = 0.4f - 0.04f * y;
+        float scale = initialScale - initialScale/10 * y;
         transform.localScale = new Vector3(scale, scale, 0f);
     }
 }

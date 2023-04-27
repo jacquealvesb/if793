@@ -7,6 +7,12 @@ public class ObjectMovement : MonoBehaviour
     public float speed = 10f;
     public float minY = -7f;
 
+    private float initialScale;
+
+    void Start() {
+        initialScale = transform.localScale.x;
+    }
+
     void Update()
     {
         transform.position += Vector3.down * speed * Time.deltaTime;
@@ -17,7 +23,7 @@ public class ObjectMovement : MonoBehaviour
         }
 
         float y = transform.position.y;
-        float scale = 0.7f - 0.07f * y;
+        float scale = initialScale - initialScale/10 * y;
         transform.localScale = new Vector3(scale, scale, 0f);
     }
 

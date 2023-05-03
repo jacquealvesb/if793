@@ -35,8 +35,8 @@ public class EstationaryObjectMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if(transform.position.y < minY) {
-                speed = 0f;
-                yield WaitForSeconds(3);
-            }
+            speed = 0f;
+            // yield WaitForSeconds(3f);
         }
+    }
 }

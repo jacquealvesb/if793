@@ -21,7 +21,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(collider.gameObject.CompareTag("collectable")) {
             gameController.AddScore(1);
-            Destroy(collider.gameObject);
+            AnimateDestroy(collider.gameObject);
 
         } else if(collider.gameObject.CompareTag("shield")) {
             if(!secured) {
@@ -30,24 +30,18 @@ public class PlayerBehaviour : MonoBehaviour
                 shield.SetActive(true);
             }
 
-            Destroy(collider.gameObject);
-
+            AnimateDestroy(collider.gameObject);
         }
         else if(collider.gameObject.CompareTag("slow")) {
-           playerMovement.speed = playerMovement.speed * 0.8f;
-
-            Destroy(collider.gameObject);
-
-
+            playerMovement.speed = playerMovement.speed * 0.8f;
+            AnimateDestroy(collider.gameObject);
         }
         else if(collider.gameObject.CompareTag("speedup")) {
             playerMovement.speed = playerMovement.speed * 1.2f;
-
-            Destroy(collider.gameObject);
+            AnimateDestroy(collider.gameObject);
 
         } else if(collider.gameObject.CompareTag("obstacle") || collider.gameObject.CompareTag("static-obstacle")) {
             if(!secured) {
-                print("OUCH!");
                 animator.SetTrigger("damage");
                 gameController.Damage();
             } else {
@@ -55,7 +49,7 @@ public class PlayerBehaviour : MonoBehaviour
                 shield.SetActive(false);
             }
             
-            Destroy(collider.gameObject);
+            AnimateDestroy(collider.gameObject);
         }
     //     else if(collider.gameObject.CompareTag("static-obstacle")) {
     //         if(!secured) {
@@ -70,5 +64,14 @@ public class PlayerBehaviour : MonoBehaviour
             
     //     }
 
+    }
+
+    private void AnimateDestroy(GameObject obj) {
+        ObjectMovement objMovement = obj.GetComponent<ObjectMovement>();
+        if(objMovement == null) {
+            Destroy(obj);
+        } else {
+            objMovement.AnimateDisappear();
+        }
     }
 }

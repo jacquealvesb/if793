@@ -8,8 +8,10 @@ public class ObjectMovement : MonoBehaviour
     public float minY = -7f;
 
     private float initialScale;
+    private Animator animator;
 
     void Start() {
+        animator = GetComponent<Animator>();
         initialScale = transform.localScale.x;
     }
 
@@ -32,5 +34,15 @@ public class ObjectMovement : MonoBehaviour
         if(transform.position.y < minY) {
             Destroy(gameObject);
         }
+    }
+
+    public void AnimateDisappear() {
+        speed = 0;
+        animator.SetTrigger("collected");
+        Invoke("Disappear", 0.2f);
+    }
+
+    private void Disappear() {
+        Destroy(gameObject);
     }
 }

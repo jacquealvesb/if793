@@ -20,7 +20,6 @@ public class RockMovement : MonoBehaviour
         if(SystemInfo.deviceType == DeviceType.Desktop)
         {
             dirX = Input.GetAxis("Horizontal") * speed;
-            transform.Rotate(0f, 0f, dirX);
         }
         else
         {

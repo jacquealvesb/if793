@@ -370,6 +370,9 @@ MonoBehaviour:
   prefabs:
   - {fileID: 7483323187829600685, guid: 0776204b268504da6a9bfeb1aa0feeba, type: 3}
   - {fileID: 410794280915334473, guid: c553185aeca874a98b6b501c79aa5741, type: 3}
+  - {fileID: 7483323187829600685, guid: 02684378bfc70174b9fb7c5d2b1d4d03, type: 3}
+  - {fileID: 7483323187829600685, guid: 2bcb20f13012f7a4b8e2cebb6a8ba86e, type: 3}
+  - {fileID: 7483323187829600685, guid: bfff0d36455bfb94c9542c4a6d219699, type: 3}
   spawnTimeRange: {x: 2, y: 6}
   xRange: {x: -1.5, y: 1.5}
 --- !u!1 &289852806
@@ -1356,7 +1359,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &1859656832
 BoxCollider2D:
   m_ObjectHideFlags: 0

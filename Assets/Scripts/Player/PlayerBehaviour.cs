@@ -6,12 +6,15 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public GameController gameController;
     public GameObject shield;
+    private PlayerMovement playerMovement;
     public bool secured = false;
 
     private Animator animator;
 
     private void Start() {
         animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
+        
     }
     
     private void OnTriggerEnter2D(Collider2D collider)
@@ -29,7 +32,20 @@ public class PlayerBehaviour : MonoBehaviour
 
             Destroy(collider.gameObject);
 
-        } else if(collider.gameObject.CompareTag("obstacle")) {
+        }
+        else if(collider.gameObject.CompareTag("slow")) {
+           playerMovement.speed = playerMovement.speed * 0.8f;
+
+            Destroy(collider.gameObject);
+
+
+        }
+        else if(collider.gameObject.CompareTag("speedup")) {
+            playerMovement.speed = playerMovement.speed * 1.2f;
+
+            Destroy(collider.gameObject);
+
+        } else if(collider.gameObject.CompareTag("obstacle") || collider.gameObject.CompareTag("static-obstacle")) {
             if(!secured) {
                 print("OUCH!");
                 animator.SetTrigger("damage");
@@ -41,5 +57,18 @@ public class PlayerBehaviour : MonoBehaviour
             
             Destroy(collider.gameObject);
         }
+    //     else if(collider.gameObject.CompareTag("static-obstacle")) {
+    //         if(!secured) {
+    //             print("OUCH!");
+    //             animator.SetTrigger("damage");
+    //             gameController.Damage();
+    //         } else {
+    //             secured = false;
+    //             shield.SetActive(false);
+    //         }
+    //         Destroy(collider.gameObject);
+            
+    //     }
+
     }
 }

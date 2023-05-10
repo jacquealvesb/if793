@@ -21,12 +21,12 @@ public class GameController : MonoBehaviour
     
     public void AddScore(int points) {
         score += points;
-        scoreText.text = "pontos: " + score;
+        scoreText.text = "pontos\n" + score;
     }
 
     public void Damage() {
         life--;
-        lifeText.text = "vidas: " + life;
+        lifeText.text = "vidas\n" + life;
         if(life <= 0) {
             Restart();
         } else {

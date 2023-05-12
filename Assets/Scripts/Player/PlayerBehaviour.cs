@@ -8,6 +8,8 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject shield;
     private PlayerMovement playerMovement;
     public bool secured = false;
+    public int slowStack;
+    public int speedupStack;
 
     private Animator animator;
 
@@ -33,12 +35,23 @@ public class PlayerBehaviour : MonoBehaviour
             AnimateDestroy(collider.gameObject);
         }
         else if(collider.gameObject.CompareTag("slow")) {
-            playerMovement.speed = playerMovement.speed * 0.8f;
-            AnimateDestroy(collider.gameObject);
+            if(playerMovement.speed > 6f){
+                slowStack++;
+                playerMovement.speed = playerMovement.speed - 1f;
+                AnimateDestroy(collider.gameObject);
+            }
+            else{
+                playerMovement.speed = playerMovement.speed - 2f;
+                slowStack=0;
+                AnimateDestroy(collider.gameObject);
+                StartCoroutine(RemoveSlow());
+            }
+
         }
         else if(collider.gameObject.CompareTag("speedup")) {
-            playerMovement.speed = playerMovement.speed * 1.2f;
+            playerMovement.speed = playerMovement.speed * 1.08f;
             AnimateDestroy(collider.gameObject);
+            
 
         } else if(collider.gameObject.CompareTag("obstacle") || collider.gameObject.CompareTag("static-obstacle")) {
             if(!secured) {
@@ -51,20 +64,14 @@ public class PlayerBehaviour : MonoBehaviour
             
             AnimateDestroy(collider.gameObject);
         }
-    //     else if(collider.gameObject.CompareTag("static-obstacle")) {
-    //         if(!secured) {
-    //             print("OUCH!");
-    //             animator.SetTrigger("damage");
-    //             gameController.Damage();
-    //         } else {
-    //             secured = false;
-    //             shield.SetActive(false);
-    //         }
-    //         Destroy(collider.gameObject);
-            
-    //     }
+    
 
     }
+    private IEnumerator RemoveSlow(){
+        yield return new WaitForSeconds(2);
+        playerMovement.speed = 10f;
+    }
+
 
     private void AnimateDestroy(GameObject obj) {
         ObjectMovement objMovement = obj.GetComponent<ObjectMovement>();

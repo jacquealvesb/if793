@@ -36,7 +36,12 @@ public class EstationaryObjectMovement : MonoBehaviour
     {
         if(transform.position.y < minY) {
             speed = 0f;
-            // yield WaitForSeconds(3f);
+            StartCoroutine(DestroyTrap());
+            
         }
+    }
+    private IEnumerator DestroyTrap(){
+        yield return new WaitForSeconds(4);
+        Destroy(gameObject);
     }
 }

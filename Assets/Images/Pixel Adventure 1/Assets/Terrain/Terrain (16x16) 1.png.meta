@@ -433,20 +433,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Terrain (16x16) 1_0: -1752897413
-      Terrain (16x16) 1_1: 810153245
-      Terrain (16x16) 1_10: 1319728780
-      Terrain (16x16) 1_11: -1454645111
-      Terrain (16x16) 1_12: 237295871
+      Terrain (16x16) 1_9: -2002242015
       Terrain (16x16) 1_13: -604641231
       Terrain (16x16) 1_2: 1679792081
-      Terrain (16x16) 1_3: -1268733418
       Terrain (16x16) 1_4: 1874780158
-      Terrain (16x16) 1_5: -131810549
+      Terrain (16x16) 1_3: -1268733418
       Terrain (16x16) 1_6: 78857308
+      Terrain (16x16) 1_10: 1319728780
+      Terrain (16x16) 1_12: 237295871
+      Terrain (16x16) 1_5: -131810549
+      Terrain (16x16) 1_1: 810153245
       Terrain (16x16) 1_7: 400451559
+      Terrain (16x16) 1_11: -1454645111
+      Terrain (16x16) 1_0: -1752897413
       Terrain (16x16) 1_8: 470919283
-      Terrain (16x16) 1_9: -2002242015
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

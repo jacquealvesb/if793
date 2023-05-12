@@ -331,9 +331,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sand Mud Ice Sliced (16x6)_0: 76475977
-      Sand Mud Ice Sliced (16x6)_1: 699423158
       Sand Mud Ice Sliced (16x6)_2: 1945846012
+      Sand Mud Ice Sliced (16x6)_1: 699423158
+      Sand Mud Ice Sliced (16x6)_0: 76475977
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
